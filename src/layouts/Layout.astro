@@ -3,7 +3,7 @@ import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/sections/Footer.astro';
 import '../styles/global.css';
 import { t } from '../utils/i18n'; // Import the translation helper
-import favicon_white from '../assets/favicon.png';
+import favicon from '../assets/favicon.png';
 import profileImg from '../assets/profile.png';
 import { name, linkedin_url, github_url } from '../utils/me';
 
@@ -41,7 +41,7 @@ const {
     </script>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href={favicon_white.src} />
+    <link rel="icon" type="image/png" href={favicon.src} />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site!).href} />

@@ -3,7 +3,8 @@ import ThemeToggle from '../ui/ThemeToggle.astro';
 import LanguageSwitcher from '../ui/LanguageSwitcher.astro';
 import { t } from '../../utils/i18n';
 import { Image } from 'astro:assets';
-import logo from '../../assets/logo.png';
+import logoDark from '../../assets/logo.png';
+import logoLight from '../../assets/logo_light.png';
 
 const lang = Astro.currentLocale;
 ---
@@ -12,7 +13,8 @@ const lang = Astro.currentLocale;
   <div class="max-w-container mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo/Monogram with dark/light mode versions -->
     <a href={lang === 'id' ? '/id/' : '/'} class="block" aria-label="Homepage">
-      <Image src={logo} alt="Portfolio Logo" class="h-8 w-auto" />
+      <Image src={logoLight} alt="Portfolio Logo" class="h-8 w-auto dark:hidden" />
+      <Image src={logoDark} alt="Portfolio Logo" class="h-8 w-auto hidden dark:block" />
     </a>
 
     <!-- Desktop Navigation -->

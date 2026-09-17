@@ -1,7 +1,8 @@
 ---
 import { t } from '../../utils/i18n';
 import { Image } from 'astro:assets';
-import logo from '../../assets/logo.png';
+import logoDark from '../../assets/logo.png';
+import logoLight from '../../assets/logo_light.png';
 import { name, email, linkedin_url, github_url } from '../../utils/me';
 
 interface Props {
@@ -17,7 +18,8 @@ const currentYear = new Date().getFullYear();
     <div class="flex flex-col md:flex-row justify-between items-center">
       <div class="mb-4 md:mb-0">
         <a href={lang === 'id' ? '/id/' : '/'} class="block" aria-label="Homepage">
-          <Image src={logo} alt={name + " Logo"} class="h-7 w-auto" />
+          <Image src={logoLight} alt={name + " Logo"} class="h-7 w-auto dark:hidden" />
+          <Image src={logoDark} alt={name + " Logo"} class="h-7 w-auto hidden dark:block" />
         </a>
       </div>
 
