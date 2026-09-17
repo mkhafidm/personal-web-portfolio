@@ -1,5 +1,5 @@
 ---
-import { PaletteIcon, Code2Icon, MegaphoneIcon, KanbanSquareIcon, LayersIcon, ImageIcon, PenToolIcon, VideoIcon, ClapperboardIcon, CameraIcon, Mic2Icon, FigmaIcon, FileCodeIcon, BracesIcon, TerminalIcon, RocketIcon, Globe2Icon, LayoutGridIcon, LinkedinIcon, Edit3Icon, SearchCheckIcon, CheckSquareIcon, BookTextIcon, LayoutDashboardIcon } from '@lucide/astro';
+import { BrainIcon, Code2Icon, DatabaseIcon, BarChart3Icon, FlaskConicalIcon, FlameIcon, ScanEyeIcon, NetworkIcon, WorkflowIcon, ServerIcon, GitBranchIcon, TerminalIcon, LineChartIcon, FileSpreadsheetIcon, GithubIcon, ZapIcon, ContainerIcon, CalculatorIcon } from '@lucide/astro';
 
 import { t } from '../../utils/i18n';
 
@@ -11,55 +11,59 @@ const { lang } = Astro.props;
 
 const skillClusters = [
   {
-    id: 'design-media',
-    title: t('skills.clusters.frontend.title', lang),
-    description: t('skills.clusters.frontend.description', lang),
-    icon: PaletteIcon,
+    id: 'ai-ml',
+    title: t('skills.clusters.aiMl.title', lang),
+    description: t('skills.clusters.aiMl.description', lang),
+    icon: BrainIcon,
     tools: [
-      { name: 'Adobe Creative Cloud', icon: LayersIcon },
-      { name: 'Photoshop', icon: ImageIcon },
-      { name: 'Illustrator', icon: PenToolIcon },
-      { name: 'Premiere Pro', icon: VideoIcon },
-      { name: 'After Effects', icon: ClapperboardIcon },
-      { name: 'Lightroom', icon: CameraIcon },
-      { name: 'Adobe Audition', icon: Mic2Icon },
-      { name: 'Figma', icon: FigmaIcon },
+      { name: 'Python', icon: TerminalIcon },
+      { name: 'PyTorch', icon: FlameIcon },
+      { name: 'Scikit-learn', icon: FlaskConicalIcon },
+      { name: 'YOLO', icon: ScanEyeIcon },
+      { name: 'LLMs', icon: BrainIcon },
+      { name: 'RAG', icon: NetworkIcon },
+      { name: 'LangChain', icon: WorkflowIcon },
     ]
   },
   {
-    id: 'web-it',
-    title: t('skills.clusters.design.title', lang),
-    description: t('skills.clusters.design.description', lang),
+    id: 'data-infrastructure',
+    title: t('skills.clusters.dataInfrastructure.title', lang),
+    description: t('skills.clusters.dataInfrastructure.description', lang),
+    icon: DatabaseIcon,
+    tools: [
+      { name: 'SQL', icon: DatabaseIcon },
+      { name: 'PostgreSQL', icon: ServerIcon },
+      { name: 'BigQuery', icon: DatabaseIcon },
+      { name: 'Qdrant', icon: ServerIcon },
+      { name: 'dbt', icon: WorkflowIcon },
+      { name: 'Airflow', icon: WorkflowIcon },
+      { name: 'Selenium', icon: TerminalIcon },
+    ]
+  },
+  {
+    id: 'data-analytics',
+    title: t('skills.clusters.dataAnalytics.title', lang),
+    description: t('skills.clusters.dataAnalytics.description', lang),
+    icon: BarChart3Icon,
+    tools: [
+      { name: 'Pandas', icon: FileSpreadsheetIcon },
+      { name: 'NumPy', icon: CalculatorIcon },
+      { name: 'Matplotlib', icon: LineChartIcon },
+      { name: 'Looker Studio', icon: BarChart3Icon },
+      { name: 'EDA', icon: BarChart3Icon },
+    ]
+  },
+  {
+    id: 'deployment-tools',
+    title: t('skills.clusters.deploymentTools.title', lang),
+    description: t('skills.clusters.deploymentTools.description', lang),
     icon: Code2Icon,
     tools: [
-      { name: 'HTML/CSS', icon: FileCodeIcon },
-      { name: 'JavaScript', icon: BracesIcon },
-      { name: 'Python', icon: TerminalIcon },
-      { name: 'Astro', icon: RocketIcon },
-      { name: 'WordPress', icon: Globe2Icon },
-      { name: 'Elementor', icon: LayoutGridIcon },
-    ]
-  },
-  {
-    id: 'marketing-content',
-    title: t('skills.clusters.tools.title', lang),
-    description: t('skills.clusters.tools.description', lang),
-    icon: MegaphoneIcon,
-    tools: [
-      { name: 'LinkedIn Marketing', icon: LinkedinIcon },
-      { name: 'Content Creation', icon: Edit3Icon },
-      { name: 'SEO Basics', icon: SearchCheckIcon },
-    ]
-  },
-  {
-    id: 'management-organization',
-    title: 'Management & Organization',
-    description: 'Structured processes, efficient workflows, and collaborative project work.',
-    icon: KanbanSquareIcon,
-    tools: [
-      { name: 'Asana', icon: CheckSquareIcon },
-      { name: 'Notion', icon: BookTextIcon },
-      { name: 'Miro', icon: LayoutDashboardIcon },
+      { name: 'FastAPI', icon: ZapIcon },
+      { name: 'Docker', icon: ContainerIcon },
+      { name: 'Git', icon: GithubIcon },
+      { name: 'GitHub Actions', icon: GitBranchIcon },
+      { name: 'Linux', icon: TerminalIcon },
     ]
   }
 ];
@@ -69,9 +73,6 @@ const skillClusters = [
   <div class="max-w-container mx-auto px-6">
     <div class="mb-8 md:mb-10 text-center" data-aos="fade-up" data-aos-duration="800">
       <h2 class="font-heading text-h2 text-secondary dark:text-white mb-4">{t('skills.title', lang)}</h2>
-      <p class="text-secondary/70 dark:text-white/70 max-w-2xl mx-auto">
-        {t('skills.subtitle', lang)}
-      </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -112,7 +113,3 @@ const skillClusters = [
     </div>
   </div>
 </section>
-
-<script>
-  // Skills section will be animated via the animations.js file
-</script>

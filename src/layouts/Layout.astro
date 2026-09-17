@@ -30,10 +30,18 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
 
-    <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href={favicon_white.src} /> {/* Keep SVG for modern browsers */}
-    <link rel="icon" type="image/png" href={favicon_white.src} /> {/* Use new PNG favicon */}
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> {/* Assuming you might add a 180x180 apple-touch-icon.png to /public */}
+    <!-- Dark mode by default (user can override via toggle, saved to localStorage) -->
+    <script is:inline>
+      (function () {
+        var theme = localStorage.getItem('theme');
+        if (theme !== 'light') {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href={favicon_white.src} />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site!).href} />
@@ -45,7 +53,7 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(profileImg.src, Astro.site!).href} />
     <meta property="og:site_name" content={t('site.title', lang)} /> {/* Added site_name */}
-    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'de_DE'} /> {/* Added locale */}
+    <meta property="og:locale" content={lang === 'id' ? 'id_ID' : 'en_US'} /> {/* Added locale */}
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -58,9 +66,9 @@ const {
 
     <!-- Hreflang links -->
     {/* For the default locale (en) */}
-    <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.replace('/de/', '/'), Astro.site!).href.replace('/de', '')} />
-    {/* For the German locale */}
-    <link rel="alternate" hreflang="de" href={new URL('/de' + Astro.url.pathname.replace('/de/', '/'), Astro.site!).href} />
+    <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.replace('/id/', '/'), Astro.site!).href.replace('/id', '')} />
+    {/* For the Indonesian locale */}
+    <link rel="alternate" hreflang="id" href={new URL('/id' + Astro.url.pathname.replace('/id/', '/'), Astro.site!).href} />
     {/* x-default */}
     <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace('/en/', '/'), Astro.site!).href.replace('/en', '')} />
 
@@ -75,24 +83,12 @@ const {
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "url": Astro.site!.href,
-      "name": t('site.title', lang),
-      "alternateName": "Portfolio Website",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": `${Astro.site!.href}search?q={search_term_string}`,
-        "query-input": "required name=search_term_string"
-      }
-    })} />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
       "@type": "Person",
       "name": name,
       "url": Astro.site!.href,
       "image": new URL(profileImg.src, Astro.site!).href,
-      "jobTitle": t('hero.role', lang), // "Dualer Student @ Digitale Medien" or "Dual Student @ Digital Media"
-      "description": description, // Main site description
+      "jobTitle": t('hero.role', lang),
+      "description": description,
       "sameAs": [
         linkedin_url,
         github_url
@@ -111,26 +107,7 @@ const {
     <!-- AOS Script -->
     <script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-    <!-- GSAP (free version) -->
-    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- Initialize AOS -->
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', () => {
-        AOS.init({
-          duration: 800,
-          easing: 'ease-out',
-          once: false,
-          offset: 50,
-        });
-      });
-    </script>
-
-    {/* Theme logic is now handled by src/scripts/theme-toggle.js, imported by ThemeToggle.astro component */}
-    {/* <script is:inline src="../scripts/theme.js"></script> */}
-
-    <!-- Animation script - importing correctly -->
+    <!-- Animation script (AOS init + GSAP effects) -->
     <script src="../scripts/animations.js"></script>
   </body>
 </html>

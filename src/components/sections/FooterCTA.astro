@@ -1,6 +1,7 @@
 ---
 import Button from '../ui/Buttons.astro';
 import { t } from '../../utils/i18n';
+import { email } from '../../utils/me';
 
 interface Props {
   lang: string | undefined;
@@ -15,16 +16,15 @@ const { lang } = Astro.props;
       <h2 class="font-heading text-h2 text-secondary dark:text-white mb-6">
         {t('footerCTA.title', lang)}
       </h2>
-      <p class="text-secondary/70 dark:text-white/70 max-w-2xl mx-auto mb-8">
+      <p class="text-secondary/70 dark:text-white/70 max-w-3xl mx-auto mb-8">
         {t('footerCTA.subtitle', lang)}
       </p>
 
       <Button
         text={t('footerCTA.buttonText', lang)}
-        href="https://github.com/nicremo"
+        href={`mailto:${email}`}
         variant="primary"
         size="lg"
-        target="_blank"
       />
     </div>
   </div>

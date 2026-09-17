@@ -1,12 +1,12 @@
 import enTranslations from '../i18n/en.json';
-import deTranslations from '../i18n/de.json';
+import idTranslations from '../i18n/id.json';
 
 const translations = {
   en: enTranslations,
-  de: deTranslations,
+  id: idTranslations,
 };
 
-type TranslationKeys = keyof typeof deTranslations; // Or enTranslations, assuming they have the same keys
+type TranslationKeys = keyof typeof enTranslations;
 
 // Helper function to safely access nested keys like "nav.start"
 function getNestedValue(obj: any, path: string): string | undefined {

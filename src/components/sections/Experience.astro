@@ -1,0 +1,57 @@
+---
+import { t } from '../../utils/i18n';
+
+interface Props {
+  lang: string | undefined;
+}
+
+const { lang } = Astro.props;
+
+const experienceItems = [
+  { id: 'item1', points: ['p1', 'p2', 'p3', 'p4'] },
+  { id: 'item2', points: ['p1', 'p2'] },
+];
+---
+
+<section id="experience" class="py-16 md:py-24">
+  <div class="max-w-container mx-auto px-6">
+    <!-- Section header -->
+    <div class="mb-14" data-aos="fade-up">
+      <span class="block font-mono text-xs uppercase tracking-[0.25em] text-secondary/50 dark:text-white/50 mb-4">
+        {t('experience.label', lang)}
+      </span>
+      <h2 class="font-heading text-h2 text-secondary dark:text-white">
+        {t('experience.title', lang)}
+      </h2>
+    </div>
+
+    <!-- Experience list -->
+    <div class="relative border-l border-secondary/10 dark:border-white/10 pl-8 md:pl-12 space-y-12">
+      {experienceItems.map((item, index) => (
+        <div class="relative" data-aos="fade-up" data-aos-delay={index * 100}>
+          <!-- Dot -->
+          <span class="absolute -left-8 md:-left-12 -translate-x-1/2 top-1.5 h-4 w-4 rounded-full bg-primary ring-4 ring-white dark:ring-neutral-dark"></span>
+
+          <p class="font-mono text-sm text-primary mb-1">
+            {t(`experience.${item.id}.period`, lang)}
+          </p>
+          <h3 class="font-heading text-xl text-secondary dark:text-white mb-1">
+            {t(`experience.${item.id}.title`, lang)}
+          </h3>
+          <p class="text-sm text-secondary/60 dark:text-white/60 mb-4">
+            {t(`experience.${item.id}.company`, lang)}
+          </p>
+
+          <ul class="space-y-2">
+            {item.points.map((point) => (
+              <li class="flex gap-3 text-sm md:text-base text-secondary/70 dark:text-white/70 leading-relaxed">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
+                <span>{t(`experience.${item.id}.points.${point}`, lang)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

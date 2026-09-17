@@ -1,0 +1,187 @@
+{
+  "site": {
+    "title": "Mukhamad Khafid Maassobirin - Portfolio",
+    "description": "AI/ML Engineer yang mengkhususkan diri dalam sistem Retrieval-Augmented Generation (RAG), pipeline LLM, dan data engineering."
+  },
+  "nav": {
+    "start": "Beranda",
+    "about": "Tentang",
+    "skills": "Keahlian",
+    "projects": "Proyek",
+    "services": "Layanan",
+    "contact": "Kontak",
+    "contactButton": "Kontak"
+  },
+  "hero": {
+    "greeting": "Halo, saya",
+    "name": "Khafid",
+    "pitch": "Merancang sistem AI end-to-end dan data pipeline yang andal dari nol hingga produksi. Menghadirkan solusi AI berdampak tinggi yang mempercepat operasional bisnis inti, mengotomatiskan workflow, dan mendorong pertumbuhan bisnis.",
+    "role": "AI Engineer",
+    "ctaProjects": "Lihat Project",
+    "ctaAbout": "Lebih Tentang Saya",
+    "ctaPortfolio": "Lihat Portofolio",
+    "ctaServices": "Jelajahi Layanan",
+    "statsProjects": "Proyek AI & Data Nyata",
+    "openToWork": "Terbuka untuk bekerja",
+    "focusAreas": "AI Agents · Sistem Otomasi · Aplikasi RAG & LLM"
+  },
+  "about": {
+    "label": "Tentang Saya",
+    "title": "Mengenal saya lebih dekat",
+    "para1": "Saya seorang AI Engineer dengan fondasi kuat di bidang Data Science, yang fokus merancang dan menerapkan sistem cerdas end-to-end dari nol. Keahlian teknis saya mencakup mengelola seluruh siklus hidup data, membangun data pipeline yang scalable, mengembangkan arsitektur Retrieval-Augmented Generation tingkat lanjut, dan mengintegrasikan AI agent otonom yang menjembatani data mentah dengan lingkungan produksi. Dengan pengalaman engineering langsung dalam mengubah tantangan data kompleks menjadi solusi yang solid, saya fokus membangun sistem yang andal dan berjalan mulus di bawah kendala dunia nyata.",
+    "para2": "Membangun AI canggih hanyalah setengah perjuangan karena tantangan sesungguhnya adalah menjembatani teknologi terbaru dengan hambatan operasional sehari-hari. Di banyak bisnis modern, banyak waktu masih terbuang untuk pengolahan data manual, pencarian dokumen yang lambat, dan proses pengambilan keputusan berulang yang menghambat pertumbuhan. Di sinilah seorang AI engineer mengubah kompleksitas menjadi keunggulan kompetitif dengan mengotomatiskan operasi yang membosankan, membuka insight tersembunyi dari data tidak terstruktur, dan mengubah workflow yang lambat menjadi mesin berkecepatan tinggi untuk kesuksesan yang scalable.",
+
+    "education": {
+      "title": "Pendidikan",
+      "degree": "Bachelor of Data Science",
+      "school": "UPN Veteran Jawa Timur · 2022–2026",
+      "gpa": "GPA 3.79/4.00"
+    },
+
+    "certification": {
+      "title": "Sertifikasi",
+      "item1Name": "Junior Web Programmer",
+      "item1Org": "BNSP (Badan Nasional Sertifikasi Profesi)",
+      "item1Year": "2025"
+    },
+
+    "publicationsTitle": "Publikasi",
+    "publications": [
+      {
+        "title": "Scientific Publication",
+        "name": "Improving Tree Traversal in Hierarchical RAG via Reasoning-Aware Approach with Interleaving Chain-of-Thought",
+        "url": "https://doi.org/10.32877/bt.v9i1.3785",
+        "journal": "bit-Tech, vol. 9, no. 1, pp. 30–40, Aug 2026",
+        "description": "Proposed a reasoning-aware hierarchical traversal mechanism integrating step-wise CoT reasoning for long-document question answering."
+      },
+      {
+        "title": "Scientific Publication",
+        "name": "Analisis Komparatif Model Abstractive Summarization dalam Pembentukan Struktur Hierarkis Dokumen pada Arsitektur RAPTOR",
+        "url": "https://erscience.com/index.php/judesh/article/view/43",
+        "journal": "Journal of Data, Engineering, and Science of Health, vol. 1, no. 01, Jun 2026",
+        "description": "Evaluated PEGASUS-X, Qwen2.5, and Gemini for hierarchical summary coherence in RAPTOR tree construction using QASPER."
+      }
+    ],
+
+    "ctaProjects": "Lihat Project",
+    "ctaCv": "Download CV"
+  },
+  "experience": {
+    "label": "Pengalaman",
+    "title": "Pengalaman profesional saya",
+    "item1": {
+      "title": "Data Scientist Intern",
+      "company": "PT Lautan Natural Krimerindo",
+      "period": "Feb 2025 – Jun 2025",
+      "points": {
+        "p1": "Mengembangkan chatbot RAG internal yang didukung Python, Gemini 1.5 Flash-Lite, dan Qdrant. Membangun classifier query-routing Random Forest untuk mengarahkan pertanyaan karyawan ke berbagai kategori dokumen, dengan fallback LLM untuk pertanyaan di luar cakupan.",
+        "p2": "Merancang pipeline kepatuhan planogram end-to-end menggunakan YOLO, Python, dan BigQuery. Melatih model object detection pada gambar rak ritel untuk memvalidasi penempatan produk, menggantikan review manual audit rak untuk seluruh tim sales.",
+        "p3": "Membangun pipeline scraping Google Maps dengan Python dan Selenium untuk mengekstrak data bisnis dari 10.000+ outlet kedai kopi, memungkinkan tim sales memprioritaskan lead berpotensi tinggi.",
+        "p4": "Membuat chatbot percakapan berbasis suara yang mengintegrasikan speech-to-text, LLM, dan text-to-speech untuk latihan speaking bahasa Inggris interaktif."
+      }
+    },
+    "item2": {
+      "title": "Data Analyst Intern",
+      "company": "BPBD Kota Surabaya",
+      "period": "Jan 2025 – Feb 2025",
+      "points": {
+        "p1": "Memproses dan memvalidasi laporan harian insiden kecelakaan dan tanggap darurat, memastikan akurasi dan konsistensi pada catatan terpusat untuk pelaporan operasional.",
+        "p2": "Merancang dashboard interaktif untuk menampilkan pola kecelakaan dan periode rawan, memungkinkan keputusan berbasis data untuk perencanaan operasional."
+      }
+    }
+  },
+  "skills": {
+    "title": "Keahlian & Tools",
+    "clusters": {
+      "aiMl": {
+        "title": "AI & ML",
+        "description": "Large language model, arsitektur RAG, dan computer vision."
+      },
+      "dataInfrastructure": {
+        "title": "Infrastruktur Data",
+        "description": "Pipeline, database, dan penyimpanan untuk sistem AI."
+      },
+      "dataAnalytics": {
+        "title": "Analitik Data",
+        "description": "Mengubah data menjadi insight yang mendorong keputusan."
+      },
+      "deploymentTools": {
+        "title": "Deployment & Tools",
+        "description": "Membangun dan meluncurkan sistem AI ke produksi."
+      }
+    }
+  },
+  "projects": {
+    "pageTitle": "Proyek",
+    "pageDescription": "Proyek AI, RAG, dan data engineering yang saya bangun dan terapkan.",
+    "heroTitle": "Proyek Saya",
+    "heroSubtitle": "Pilihan proyek AI dan data engineering, dari riset RAG hingga pipeline bergaya produksi.",
+    "viewProject": "Lihat Proyek",
+    "detailLabels": {
+      "challenge": "Tantangan",
+      "approach": "Pendekatan",
+      "result": "Hasil",
+      "technologiesUsed": "Teknologi yang Digunakan"
+    },
+    "title": "Proyek",
+    "subtitle": "Proyek riset dan engineering yang mencakup sistem RAG, computer vision, dan data pipeline.",
+    "hierarchicalRag": {
+      "name": "Hierarchical RAG Chatbot",
+      "tags": ["RAG", "LLM", "Vector DB", "FastAPI"],
+      "shortDescription": "Chatbot RAG hierarkis yang menggabungkan konstruksi tree ala RAPTOR dengan penalaran berpandu IRCoT untuk question answering multi-hop yang mendalam.",
+      "challenge": "Menjawab pertanyaan yang membutuhkan penalaran melampaui kesamaan semantik sederhana, terutama pada dokumen yang panjang dan kompleks.",
+      "approach": "Membangun pipeline embedding dan clustering (multilingual-e5-large-instruct, UMAP, Gaussian Mixture Models yang dioptimalkan dengan BIC) untuk menyusun dokumen menjadi tree hierarkis, lalu menggunakan traversal DFS adaptif dengan pruning dua ambang dan penalaran interleaved untuk memandu retrieval.",
+      "result": "Dievaluasi pada empat dataset benchmark dengan uji signifikansi statistik, menunjukkan peningkatan yang konsisten pada NarrativeQA dan QASPER. Di-deploy dengan backend FastAPI, Qdrant sebagai vector store, dan vLLM yang melayani Qwen2.5-7B-Instruct-AWQ."
+    },
+    "plDataWarehouse": {
+      "name": "Premier League Data Warehouse",
+      "tags": ["ETL", "BigQuery", "dbt", "CI/CD"],
+      "shortDescription": "Pipeline data otomatis yang mengekstrak statistik pemain, tim, dan jadwal Premier League ke dalam data warehouse yang termodelkan.",
+      "challenge": "Menjaga statistik sepak bola tetap terbarui dan siap analisis tanpa penarikan data manual.",
+      "approach": "Membangun pipeline terjadwal dengan GitHub Actions untuk mengekstrak data dari Fantasy Premier League API, memuatnya ke BigQuery, dan memodelkannya dengan dbt.",
+      "result": "Pipeline bergaya produksi yang berjalan sesuai jadwal berulang tanpa intervensi manual."
+    },
+    "internalRagChatbot": {
+      "name": "Internal RAG Chatbot",
+      "tags": ["RAG", "LLM", "Qdrant", "ML"],
+      "shortDescription": "Chatbot RAG internal yang dibangun selama magang Data Scientist untuk menjawab pertanyaan karyawan tentang kebijakan dan struktur perusahaan.",
+      "challenge": "Mengarahkan pertanyaan karyawan ke kategori dokumen yang tepat dan melakukan fallback dengan baik untuk pertanyaan di luar cakupan.",
+      "approach": "Menggabungkan Gemini 1.5 Flash-Lite dan Qdrant untuk retrieval dengan classifier Random Forest untuk query routing.",
+      "result": "Mengurangi ketergantungan pada pencarian manual dengan memberikan jawaban yang cepat dan akurat untuk pertanyaan umum karyawan."
+    },
+    "card": {
+      "viewDetails": "Lihat Detail"
+    },
+    "modal": {
+      "overview": "Gambaran Umum",
+      "highlights": "Fitur Utama",
+      "stack": "Tech Stack",
+      "metrics": "Metrik",
+      "github": "GitHub",
+      "demo": "Live Demo",
+      "paper": "Baca Paper"
+    },
+    "buttonText": "Lihat di GitHub",
+    "allProjectsButtonText": "Semua Proyek di GitHub"
+  },
+  "footerCTA": {
+    "title": "Mencari Sistem AI atau Data untuk Dibangun?",
+    "subtitle": "Saya terbuka untuk peluang freelance dan full-time di bidang AI engineering dan solusi data. Mari berkolaborasi membangun solusi AI yang scalable untuk mengoptimalkan operasional bisnis dan mengubah data Anda menjadi insight yang actionable.",
+    "buttonText": "Hubungi Saya"
+  },
+  "contact": {
+    "title": "Kontak",
+    "subtitle": "Punya proyek dalam pikiran atau peluang untuk didiskusikan? Jangan ragu untuk menghubungi.",
+    "emailTitle": "Email",
+    "emailButtonText": "Kirim Email",
+    "githubTitle": "GitHub",
+    "githubButtonText": "Lihat Profil",
+    "linkedinTitle": "LinkedIn",
+    "linkedinButtonText": "Terhubung di LinkedIn"
+  },
+  "footer": {
+    "copyright": "Hak cipta dilindungi.",
+    "imprint": "Imprint",
+    "privacyPolicy": "Kebijakan Privasi"
+  }
+}

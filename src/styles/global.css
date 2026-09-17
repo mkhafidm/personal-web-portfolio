@@ -29,6 +29,11 @@ html, body {
     @apply text-body;
   }
 
+  /* Offset anchored sections so the fixed navbar never covers headings */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Sora', sans-serif;
     font-weight: 600;

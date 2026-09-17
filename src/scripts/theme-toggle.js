@@ -5,8 +5,9 @@ export function initializeTheme() {
 
   const applyTheme = () => {
     const userTheme = localStorage.getItem('theme');
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (userTheme === 'dark' || (!userTheme && systemTheme)) {
+    // Default to dark mode unless the user explicitly chose light.
+    const useDark = userTheme === 'dark' || userTheme === null;
+    if (useDark) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
@@ -26,18 +27,6 @@ export function initializeTheme() {
         // No need to call applyTheme() here as classList.toggle handles the visual change.
       });
       button.setAttribute('data-theme-listener-attached', 'true');
-    }
-  });
-
-  // Listen for system theme changes (if no user preference is set)
-  // This part is from the global theme.js, good to have it consolidated.
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) { // Only if no explicit user choice
-      if (e.matches) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
     }
   });
 }

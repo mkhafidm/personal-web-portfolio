@@ -11,14 +11,16 @@ export default defineConfig({
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'de'],
+    locales: ['en', 'id'],
     routing: {
-      prefixDefaultLocale: false, // English pages won't have /en/, German will have /de/
+      prefixDefaultLocale: false, // English pages won't have /en/, Indonesian will have /id/
     },
   },
 
   // Integrations
-  integrations: [tailwind(), sitemap(), compress({
+  integrations: [tailwind(), sitemap({
+    filter: (page) => !page.includes('/id/'),
+  }), compress({
     css: true,
     html: true,
     js: true,

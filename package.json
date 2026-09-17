@@ -26,5 +26,9 @@
   "overrides": {
     "react": "npm:@preact/compat@latest",
     "react-dom": "npm:@preact/compat@latest"
+  },
+  "allowScripts": {
+    "esbuild@0.25.1": true,
+    "sharp@0.33.5": true
   }
 }

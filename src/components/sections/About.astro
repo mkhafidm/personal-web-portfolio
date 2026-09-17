@@ -1,0 +1,130 @@
+---
+import { t, getTranslations } from '../../utils/i18n';
+
+interface Props {
+  lang: string | undefined;
+}
+
+const { lang } = Astro.props;
+
+const translations = getTranslations(lang);
+const publications = (translations.about?.publications || []) as Array<{
+  name?: string;
+  url?: string;
+  journal?: string;
+  description?: string;
+}>;
+---
+
+<section id="about" class="py-16 md:py-24 border-t border-secondary/5 dark:border-white/5">
+  <div class="max-w-container mx-auto px-6">
+    <!-- Section header -->
+    <div class="mb-14" data-aos="fade-up">
+      <span class="block font-mono text-xs uppercase tracking-[0.25em] text-secondary/50 dark:text-white/50 mb-4">
+        {t('about.label', lang)}
+      </span>
+      <h2 class="font-heading text-h2 text-secondary dark:text-white">
+        {t('about.title', lang)}
+      </h2>
+    </div>
+
+    <!-- About text + credentials -->
+    <div class="grid grid-cols-1 sm:grid-cols-12 gap-gutter">
+      <div class="sm:col-span-8 space-y-6" data-aos="fade-up">
+        <p class="text-lg md:text-xl text-secondary/80 dark:text-white/80 leading-relaxed">
+          {t('about.para1', lang)}
+        </p>
+        <p class="text-lg md:text-xl text-secondary/80 dark:text-white/80 leading-relaxed">
+          {t('about.para2', lang)}
+        </p>
+      </div>
+
+      <div class="sm:col-span-4 mt-12 sm:mt-0" data-aos="fade-up" data-aos-delay="100">
+        <div class="flex flex-col gap-4 sm:ml-auto sm:max-w-sm">
+          <div class="rounded-xl border border-secondary/10 dark:border-white/10 bg-white dark:bg-neutral-dark p-6 shadow-sm">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-secondary/50 dark:text-white/50 mb-3">
+              {t('about.education.title', lang)}
+            </p>
+            <p class="font-heading font-semibold text-secondary dark:text-white mb-1">
+              {t('about.education.degree', lang)}
+            </p>
+            <p class="font-mono text-sm text-secondary/60 dark:text-white/60 mb-1">
+              {t('about.education.school', lang)}
+            </p>
+            <p class="text-sm text-secondary/70 dark:text-white/70">
+              {t('about.education.gpa', lang)}
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-secondary/10 dark:border-white/10 bg-white dark:bg-neutral-dark p-6 shadow-sm">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-secondary/50 dark:text-white/50 mb-3">
+              {t('about.certification.title', lang)}
+            </p>
+            <p class="font-heading font-semibold text-secondary dark:text-white mb-1">
+              {t('about.certification.item1Name', lang)}
+            </p>
+            <p class="font-mono text-sm text-secondary/60 dark:text-white/60">
+              {t('about.certification.item1Org', lang)} · {t('about.certification.item1Year', lang)}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Publications -->
+    <div class="mt-16 md:mt-20" data-aos="fade-up">
+      <p class="font-mono text-xs uppercase tracking-[0.25em] text-secondary/50 dark:text-white/50 mb-8">
+        {t('about.publicationsTitle', lang)}
+      </p>
+
+      <div class="space-y-8">
+        {publications.map((publication, index) => (
+          <article class="grid grid-cols-1 sm:grid-cols-[44px_1fr] gap-3 sm:gap-6">
+            <span class="font-mono text-sm text-primary leading-8 pt-0.5">
+              [{index + 1}]
+            </span>
+            <div>
+              <h3 class="font-medium text-primary text-lg md:text-xl leading-snug mb-2">
+                {publication.url ? (
+                  <a
+                    href={publication.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:underline underline-offset-4 transition-colors"
+                  >
+                    {publication.name}
+                  </a>
+                ) : (
+                  publication.name
+                )}
+              </h3>
+              <p class="font-mono text-sm text-secondary/60 dark:text-white/60 mb-2">
+                {publication.journal}
+              </p>
+              <p class="text-secondary/70 dark:text-white/70 max-w-3xl">
+                {publication.description}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 flex flex-col sm:flex-row gap-4" data-aos="fade-up">
+      <a
+        href="#projects"
+        class="inline-flex items-center justify-center rounded-lg font-semibold text-base py-3.5 px-7 bg-primary text-white hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
+      >
+        {t('about.ctaProjects', lang)} →
+      </a>
+      <a
+        href="/mukhamad-khafid-maassobirin-cv.pdf"
+        download
+        class="inline-flex items-center justify-center rounded-lg font-semibold text-base py-3.5 px-7 border border-primary text-primary hover:bg-primary/10 bg-transparent transition-colors"
+      >
+        {t('about.ctaCv', lang)}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,80 +1,121 @@
 {
   "site": {
-    "title": "Nicremo - Portfolio",
-    "description": "Developer and creator of modern web templates focusing on Astro, multilingual support, and performance optimization."
+    "title": "Mukhamad Khafid Maassobirin - Portfolio",
+    "description": "AI/ML Engineer specializing in Retrieval-Augmented Generation (RAG) systems, LLM pipelines, and data engineering."
   },
   "nav": {
-    "start": "Start",
-    "about": "About Me",
+    "start": "Home",
+    "about": "About",
     "skills": "Skills",
+    "projects": "Projects",
+    "services": "Services",
     "contact": "Contact",
     "contactButton": "Contact"
   },
   "hero": {
     "greeting": "Hello, I am",
-    "name": "Nicremo",
-    "pitch": "I create modern, multilingual web templates and share them on GitHub to help developers build fast, accessible websites.",
-    "role": "Template Creator & Developer",
+    "name": "Khafid",
+    "pitch": "Designing end-to-end AI systems and robust data pipelines from scratch to production. Delivering high-impact AI solutions that accelerate core business operations, automate workflows, and drive business growth.",
+    "role": "AI Engineer",
     "ctaProjects": "View Projects",
-    "ctaAbout": "More About Me"
+    "ctaAbout": "More About Me",
+    "ctaPortfolio": "View Portfolio",
+    "ctaServices": "Explore Services",
+    "statsProjects": "Real-World AI & Data Projects",
+    "openToWork": "Open to work",
+    "focusAreas": "AI Agents · Automation Systems · RAG & LLM Applications"
   },
-  "values": {
-    "title": "My Approach",
-    "subtitle": "These three values shape my work and help me create compelling web templates.",
-    "card1Title": "Performance",
-    "card1Text": "Fast loading times and optimal performance are the foundation for great user experiences – every template achieves 90+ Lighthouse scores.",
-    "card2Title": "Accessibility",
-    "card2Text": "Multilingual support and WCAG 2.1 AA compliance ensure that everyone can use the templates, regardless of language or abilities.",
-    "card3Title": "Developer Experience",
-    "card3Text": "Clean code, clear documentation, and easy customization through JSON files make it simple for developers to get started quickly."
+  "about": {
+    "label": "About",
+    "title": "Get to know me better",
+    "para1": "I am an AI Engineer with a solid foundation in Data Science, specializing in designing and deploying end-to-end intelligent systems from scratch. My technical expertise spans across managing the full data lifecycle, building scalable data pipelines, developing advanced Retrieval-Augmented Generation architectures, and integrating autonomous AI agents that bridge raw data with production environments. Having hands-on engineering experience in transforming complex data challenges into robust solutions, I focus on building reliable systems that perform seamlessly under real-world constraints.",
+    "para2": "Building advanced AI is only half the battle because the real challenge lies in bridging the gap between cutting-edge technology and everyday operational bottlenecks. Across modern businesses, countless hours are still wasted on manual data handling, sluggish document searches, and repetitive decision-making processes that stunt growth. This is where an AI engineer turns complexity into a competitive advantage by automating tedious operations, unlocking hidden insights from unstructured data, and turning sluggish workflows into high-speed engines for scalable success.",
+
+    "education": {
+      "title": "Education",
+      "degree": "Bachelor of Data Science",
+      "school": "UPN Veteran Jawa Timur · 2022–2026",
+      "gpa": "GPA 3.79/4.00"
+    },
+
+    "certification": {
+      "title": "Certification",
+      "item1Name": "Junior Web Programmer",
+      "item1Org": "BNSP (Badan Nasional Sertifikasi Profesi)",
+      "item1Year": "2025"
+    },
+
+    "publicationsTitle": "Publications",
+    "publications": [
+      {
+        "title": "Scientific Publication",
+        "name": "Improving Tree Traversal in Hierarchical RAG via Reasoning-Aware Approach with Interleaving Chain-of-Thought",
+        "url": "https://doi.org/10.32877/bt.v9i1.3785",
+        "journal": "bit-Tech, vol. 9, no. 1, pp. 30–40, Aug 2026",
+        "description": "Proposed a reasoning-aware hierarchical traversal mechanism integrating step-wise CoT reasoning for long-document question answering."
+      },
+      {
+        "title": "Scientific Publication",
+        "name": "Analisis Komparatif Model Abstractive Summarization dalam Pembentukan Struktur Hierarkis Dokumen pada Arsitektur RAPTOR",
+        "url": "https://erscience.com/index.php/judesh/article/view/43",
+        "journal": "Journal of Data, Engineering, and Science of Health, vol. 1, no. 01, Jun 2026",
+        "description": "Evaluated PEGASUS-X, Qwen2.5, and Gemini for hierarchical summary coherence in RAPTOR tree construction using QASPER."
+      }
+    ],
+
+    "ctaProjects": "View Projects",
+    "ctaCv": "Download CV"
+  },
+  "experience": {
+    "label": "Experience",
+    "title": "My professional experience",
+    "item1": {
+      "title": "Data Scientist Intern",
+      "company": "PT Lautan Natural Krimerindo",
+      "period": "Feb 2025 – Jun 2025",
+      "points": {
+        "p1": "Developed an internal RAG-based chatbot powered by Python, Gemini 1.5 Flash-Lite, and Qdrant. Built a Random Forest query-routing classifier to direct employee questions across document categories, with LLM fallback for out-of-scope queries.",
+        "p2": "Engineered an end-to-end planogram compliance pipeline using YOLO, Python, and BigQuery. Trained an object detection model on retail shelf images to validate product placement, replacing manual shelf-audit review for the entire sales team.",
+        "p3": "Built a Google Maps scraping pipeline with Python and Selenium to extract business data from 10,000+ coffee shop outlets, enabling the sales team to prioritize high-potential leads.",
+        "p4": "Created a speech-based conversational chatbot integrating speech-to-text, LLM, and text-to-speech for interactive spoken English practice."
+      }
+    },
+    "item2": {
+      "title": "Data Analyst Intern",
+      "company": "BPBD Kota Surabaya",
+      "period": "Jan 2025 – Feb 2025",
+      "points": {
+        "p1": "Processed and validated daily accident and emergency incident reports, ensuring accuracy and consistency across centralized records for operational reporting.",
+        "p2": "Designed an interactive dashboard to surface accident patterns and high-risk periods, enabling data-driven decisions for operational planning."
+      }
+    }
   },
   "skills": {
     "title": "Skills & Tools",
-    "subtitle": "With these tools and technologies, I create modern, performant web templates.",
     "clusters": {
-      "frontend": {
-        "title": "Frontend & Frameworks",
-        "description": "Modern web development with Astro, React, and static site generation."
+      "aiMl": {
+        "title": "AI & ML",
+        "description": "Large language models, RAG architectures, and computer vision."
       },
-      "design": {
-        "title": "Design & Styling",
-        "description": "Beautiful interfaces with Tailwind CSS, responsive design, and dark mode support."
+      "dataInfrastructure": {
+        "title": "Data Infrastructure",
+        "description": "Pipelines, databases, and storage for AI systems."
       },
-      "tools": {
-        "title": "Development Tools",
-        "description": "Version control, deployment, and optimization for production-ready templates."
+      "dataAnalytics": {
+        "title": "Data Analytics",
+        "description": "Turning data into insights that drive decisions."
+      },
+      "deploymentTools": {
+        "title": "Deployment & Tools",
+        "description": "Building and shipping AI systems to production."
       }
-    },
-    "category": {
-      "design": "Design",
-      "coding": "Coding",
-      "framework": "Framework",
-      "deployment": "Deployment"
-    },
-    "astro": {
-      "description": "Static Site Generation & Performance"
-    },
-    "react": {
-      "description": "Interactive Components & UI"
-    },
-    "tailwind": {
-      "description": "Utility-First Styling & Design"
-    },
-    "typescript": {
-      "description": "Type-Safe Development"
-    },
-    "git": {
-      "description": "Version Control & Collaboration"
-    },
-    "vercel": {
-      "description": "Deployment & Hosting"
     }
   },
   "projects": {
     "pageTitle": "Projects",
-    "pageDescription": "A collection of open-source templates and projects shared on GitHub.",
+    "pageDescription": "AI, RAG, and data engineering projects I've built and deployed.",
     "heroTitle": "My Projects",
-    "heroSubtitle": "Explore my collection of web templates and open-source projects.",
+    "heroSubtitle": "A selection of AI and data engineering projects, from RAG research to production-style pipelines.",
     "viewProject": "View Project",
     "detailLabels": {
       "challenge": "Challenge",
@@ -82,54 +123,61 @@
       "result": "Result",
       "technologiesUsed": "Technologies Used"
     },
-    "title": "Selected Projects",
-    "subtitle": "Open-source templates and projects available on GitHub for developers worldwide.",
-    "astroPortfolio": {
-      "shortDescription": "Modern, multilingual portfolio template built with Astro and Tailwind CSS featuring dark mode and i18n support.",
-      "challenge": "Creating a performant, multilingual portfolio template that's easy to customize without touching code.",
-      "approach": "Using Astro for optimal performance, JSON-based content management, and comprehensive documentation for easy setup.",
-      "result": "100/100 Lighthouse score, fully responsive, available in multiple languages, and used by developers worldwide."
+    "title": "Projects",
+    "subtitle": "Research and engineering projects spanning RAG systems, computer vision, and data pipelines.",
+    "hierarchicalRag": {
+      "name": "Hierarchical RAG Chatbot",
+      "tags": ["RAG", "LLM", "Vector DB", "FastAPI"],
+      "shortDescription": "Hierarchical RAG chatbot combining RAPTOR-style tree construction with IRCoT-guided reasoning for deep multi-hop question answering.",
+      "challenge": "Answering questions that require reasoning beyond simple semantic similarity, especially on long, complex documents.",
+      "approach": "Built an embedding and clustering pipeline (multilingual-e5-large-instruct, UMAP, BIC-optimized Gaussian Mixture Models) to structure documents into a hierarchical tree, then used an adaptive DFS traversal with dual-threshold pruning and interleaved reasoning generation to guide retrieval.",
+      "result": "Evaluated across four benchmark datasets with statistical significance testing, showing consistent gains on NarrativeQA and QASPER. Deployed with a FastAPI backend, Qdrant as the vector store, and vLLM serving Qwen2.5-7B-Instruct-AWQ."
     },
-    "coreprotectWebUI": {
-      "shortDescription": "Web interface for CoreProtect Minecraft plugin with real-time player activity tracking and analytics.",
-      "challenge": "Visualizing complex Minecraft server data in an intuitive, player-centric dashboard.",
-      "approach": "Astro SSR with React components, MySQL integration, and responsive dark-themed UI with real-time updates.",
-      "result": "663,000+ block changes tracked, 4,000+ container transactions, comprehensive player activity monitoring."
+    "plDataWarehouse": {
+      "name": "Premier League Data Warehouse",
+      "tags": ["ETL", "BigQuery", "dbt", "CI/CD"],
+      "shortDescription": "Automated data pipeline extracting Premier League player, team, and fixture stats into a modeled data warehouse.",
+      "challenge": "Keeping football statistics up to date and analysis-ready without manual data pulls.",
+      "approach": "Built a scheduled pipeline with GitHub Actions to extract data from the Fantasy Premier League API, loaded it into BigQuery, and modeled it with dbt.",
+      "result": "A production-style pipeline that runs on a recurring schedule with zero manual intervention."
     },
-    "templateCollection": {
-      "shortDescription": "Growing collection of Astro templates shared on GitHub focusing on different use cases and industries.",
-      "challenge": "Providing developers with production-ready templates that are easy to customize and deploy.",
-      "approach": "Creating modular, well-documented templates with SEO optimization and modern best practices.",
-      "result": "Multiple templates with growing community adoption and positive feedback from developers."
+    "internalRagChatbot": {
+      "name": "Internal RAG Chatbot",
+      "tags": ["RAG", "LLM", "Qdrant", "ML"],
+      "shortDescription": "Internal RAG chatbot built during a Data Scientist internship to answer employee questions about company policy and structure.",
+      "challenge": "Routing employee questions to the right document category and falling back gracefully for out-of-scope queries.",
+      "approach": "Combined Gemini 1.5 Flash-Lite and Qdrant for retrieval with a Random Forest classifier for query routing.",
+      "result": "Reduced reliance on manual lookups by giving employees instant, accurate answers to common questions."
+    },
+    "card": {
+      "viewDetails": "View Details"
+    },
+    "modal": {
+      "overview": "Overview",
+      "highlights": "Key Features",
+      "stack": "Tech Stack",
+      "metrics": "Metrics",
+      "github": "GitHub",
+      "demo": "Live Demo",
+      "paper": "Read Paper"
     },
     "buttonText": "View on GitHub",
     "allProjectsButtonText": "All Projects on GitHub"
   },
-  "timeline": {
-    "title": "My Journey",
-    "subtitle": "Development experience and important milestones in my career as a template creator.",
-    "item1Title": "Open Source Contributor",
-    "item1Description": "Creating and maintaining modern web templates on GitHub. Focus: Astro, multilingual support, performance optimization.",
-    "item2Title": "Web Development",
-    "item2Description": "Building production-ready websites and applications. Skills: Astro, React, TypeScript, Tailwind CSS, SSR.",
-    "item3Title": "Template Creator",
-    "item3Description": "Designing and developing reusable templates for portfolios, landing pages, and web applications with comprehensive documentation.",
-    "buttonText": "View GitHub Profile"
-  },
   "footerCTA": {
-    "title": "Need a Template?",
-    "subtitle": "Check out my open-source templates on GitHub and start building your next project today.",
-    "buttonText": "Browse on GitHub"
+    "title": "Looking to Build an AI or Data System?",
+    "subtitle": "I'm open to freelance and full-time opportunities in AI engineering and data solutions. Let's collaborate to build scalable AI solutions that optimize business operations and turn your data into actionable insights.",
+    "buttonText": "Get in Touch"
   },
   "contact": {
-    "title": "Contact",
-    "subtitle": "Have questions about my templates or want to collaborate? Feel free to reach out!",
-    "emailTitle": "Email",
-    "emailButtonText": "Send Email",
-    "githubTitle": "GitHub",
-    "githubButtonText": "View Profile",
-    "linkedinTitle": "LinkedIn",
-    "linkedinButtonText": "Connect on LinkedIn"
+  "title": "Contact",
+  "subtitle": "Have a project in mind or an opportunity to discuss? Feel free to reach out.",
+  "emailTitle": "Email",
+  "emailButtonText": "Send Email",
+  "githubTitle": "GitHub",
+  "githubButtonText": "View Profile",
+  "linkedinTitle": "LinkedIn",
+  "linkedinButtonText": "Connect on LinkedIn"
   },
   "footer": {
     "copyright": "All rights reserved.",

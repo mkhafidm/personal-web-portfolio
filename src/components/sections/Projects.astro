@@ -1,6 +1,26 @@
 ---
-import Button from '../ui/Buttons.astro';
 import { t } from '../../utils/i18n';
+import { github_url } from '../../utils/me';
+
+interface ProjectHighlight {
+  title: string;
+  desc: string;
+}
+
+interface Project {
+  title: string;
+  cardDesc: string;
+  overview: string;
+  highlights: ProjectHighlight[];
+  stack: string[];
+  metrics: string[];
+  links: {
+    github?: string;
+    paper?: string;
+    demo?: string;
+  };
+  images: string[];
+}
 
 interface Props {
   lang: string | undefined;
@@ -8,97 +28,525 @@ interface Props {
 
 const { lang } = Astro.props;
 
-const projects = [
+const projects: Project[] = [
   {
-    title: 'Relaunch DB Training Website',
-    slug: 'db-training-relaunch',
-    image: '/images/projects/db-training.jpg',
-    tags: [t('projects.tags.uxUiDesign', lang), t('projects.tags.projectManagement', lang)],
-    shortDescription: t('projects.dbTrainingRelaunch.shortDescription', lang),
-    challenge: t('projects.dbTrainingRelaunch.challenge', lang),
-    approach: t('projects.dbTrainingRelaunch.approach', lang),
-    result: t('projects.dbTrainingRelaunch.result', lang)
+    title: 'Hierarchical IRCoT RAG',
+    cardDesc: 'Hierarchical RAG chatbot proposing interleaved chain-of-thought reasoning for complex question answering on long documents.',
+    overview: 'RAG chatbot that optimizes hierarchical tree traversal using Interleaving Chain-of-Thought (IRCoT) reasoning. Built a hierarchical indexing pipeline with multilingual-e5 embeddings, UMAP dimensionality reduction, and BIC-optimized Gaussian Mixture Models for RAPTOR-style recursive tree construction. Implemented adaptive depth-control traversal with dual-threshold pruning to balance direct query similarity and reasoning-chain similarity. Deployed end-to-end via FastAPI with vLLM serving quantized Qwen2.5-7B-Instruct.',
+    highlights: [
+      { title: 'RAPTOR-Style Trees', desc: 'Hierarchical document indexing' },
+      { title: 'IRCoT Reasoning', desc: 'Interleaved chain-of-thought for complex queries' },
+      { title: 'Adaptive Traversal', desc: 'Dual-threshold pruning for retrieval precision' },
+      { title: 'Cross-Dataset Testing', desc: 'Validated on 4 benchmark datasets' },
+    ],
+    stack: ['Python', 'FastAPI', 'Qdrant', 'vLLM', 'Qwen2.5', 'multilingual-e5', 'UMAP', 'GMM'],
+    metrics: [
+      'Evaluated on 4 benchmark datasets: Qasper, NarrativeQA, TydiQA, QuALITY',
+      '+14% Token F1 & +11% ROUGE-L over baseline on NarrativeQA',
+      'Baseline runs 2-4x faster than the proposed method',
+      'Statistical validation with Wilcoxon & McNemar tests',
+    ],
+    links: {
+      github: 'https://github.com/mkhafidm/Hierarchical-IRCoT-RAG',
+      paper: '',
+      demo: '',
+    },
+    images: [
+      '/projects/hirco-rag/cover.png',
+      '/projects/hirco-rag/architecture.png',
+      '/projects/hirco-rag/tree-construction.png',
+      '/projects/hirco-rag/tree-traversal.png',
+    ],
   },
   {
-    title: 'Kampagnen-Dashboard für Media-Tracking',
-    slug: 'media-dashboard',
-    image: '/images/projects/media-dashboard.jpg',
-    tags: [t('projects.tags.dataVisualization', lang), t('projects.tags.webDevelopment', lang)],
-    shortDescription: t('projects.mediaDashboard.shortDescription', lang),
-    challenge: t('projects.mediaDashboard.challenge', lang),
-    approach: t('projects.mediaDashboard.approach', lang),
-    result: t('projects.mediaDashboard.result', lang)
+    title: 'RAG Query Router for Company Documents',
+    cardDesc: 'A RAG chatbot that routes user questions to the correct document source before retrieval, using a Random Forest classifier to reduce irrelevant retrieval and hallucination.',
+    overview: 'RAG chatbot that routes user questions to the correct document source before retrieval, instead of searching indiscriminately across all documents. Trained a Random Forest classifier on Indo-BERT sentence embeddings to categorize incoming questions into company profile, company regulations, or organizational structure — with a confidence-threshold fallback to general LLM knowledge when the classifier is uncertain. Built custom preprocessing parsers for structured regulations, markdown profile docs, and tabular org data, storing embedded chunks in Qdrant with source-based payload filtering. Supports dual-provider generation (Groq Llama 3.3 70B and Google Gemini) with streaming responses, deployed via Flask with structured query logging for observability.',
+    highlights: [
+      { title: 'Smart Query Routing', desc: 'Random Forest classifier on Indo-BERT embeddings, cuts irrelevant retrieval and hallucination risk' },
+      { title: 'Confidence-Gated Fallback', desc: 'Routes uncertain queries to general LLM knowledge instead of forcing a bad retrieval' },
+      { title: 'Multi-Format Document Parsing', desc: 'Dedicated parsers normalize structured regulations, markdown profiles, and tabular org data into a unified chunk format' },
+    ],
+    stack: ['Python', 'Flask', 'Qdrant', 'Groq Llama 3.3', 'Google Gemini', 'Sentence-Transformers', 'Indo-BERT', 'Scikit-learn'],
+    metrics: [
+      '3-way document source classification (profile / regulations / org structure)',
+      'Confidence-threshold fallback to reduce hallucination on out-of-scope queries',
+    ],
+    links: { github: 'https://github.com/mkhafidm/rag-query-router' },
+    images: [
+      '/projects/rag-query-router/architecture.png',
+      '/projects/rag-query-router/interface.png',
+    ],
   },
   {
-    title: 'Erklärvideos für DB Digitalisierungsprogramm',
-    slug: 'db-explainer-videos',
-    image: '/images/projects/explainer-videos.jpg',
-    tags: [t('projects.tags.motionDesign', lang), t('projects.tags.scriptStoryboard', lang)],
-    shortDescription: t('projects.dbExplainerVideos.shortDescription', lang),
-    challenge: t('projects.dbExplainerVideos.challenge', lang),
-    approach: t('projects.dbExplainerVideos.approach', lang),
-    result: t('projects.dbExplainerVideos.result', lang)
-  }
+    title: 'Automated CV Screening System',
+    cardDesc: 'End-to-end automated resume screening system leveraging Groq LLM, hybrid PII masking, and multi-category weighted scoring.',
+    overview: 'Automated end-to-end CV screening system designed to eliminate manual bottlenecks, reduce human bias, and accelerate recruitment with transparent scoring. The pipeline parses high-resolution PDF resumes and job descriptions using the unstructured library, applies a hybrid PII masking layer (Regex + Indonesian NER) for data privacy, and extracts structured JSON profiles via Groq LLM. It features an advanced multi-category weighted scoring engine (Domain Content 40%, Software Match 25%, Experience Length 15%, Education Fit 15%, and Soft Skill Evidence 5%) utilizing semantic embedding similarity, rapidfuzz string matching, and overlap-aware date merging. Outputs structured auditing details per candidate alongside an aggregated ranking CSV.',
+    highlights: [
+      { title: 'Hybrid PII Masking', desc: 'Combines regex and Indonesian NER (cahya/bert-base-indonesian-NER) to strip sensitive personal data before LLM processing for zero-bias evaluation.' },
+      { title: 'LLM Structured Extraction', desc: 'Utilizes Groq with strict JSON schema to parse messy resume layouts into clean, standardized candidate profiles.' },
+      { title: 'Multi-Category Scoring Engine', desc: 'Implements 5 independent weighted scorers covering domain relevance, software/tool matching, relevant work experience years, educational strata weights, and soft skill evidence.' },
+      { title: 'Transparent & Auditable Output', desc: 'Generates per-candidate JSON detail logs and a sorted ranking.csv summary for complete explainability.' },
+    ],
+    stack: ['Python', 'Groq LLM', 'Unstructured', 'Sentence-Transformers', 'HuggingFace', 'Pandas', 'RapidFuzz', 'Microsoft Presidio'],
+    metrics: [
+      'Multi-category weighted scoring framework summing to 100% (Domain 40%, Software 25%, Experience 15%, Education 15%, Soft Skills 5%)',
+      'Cost-efficient processing at approximately $0.0005 – $0.0014 per CV (~$0.50 – $1.40 per 1,000 CVs)',
+      'Automated dual-format output generation ({CV_Name}_result.json and ranking.csv)',
+    ],
+    links: { github: 'https://github.com/mkhafidm/resume-screeening-automation.git' },
+    images: ['/projects/cv-screening/architecture.png'],
+  },
 ];
 ---
 
 <section id="projects" class="py-16 md:py-24 bg-neutral-bg dark:bg-neutral-dark/60">
   <div class="max-w-container mx-auto px-6">
-    <div class="mb-12" data-aos="fade-up">
-      <h2 class="font-heading text-h2 text-secondary dark:text-white mb-4">{t('projects.title', lang)}</h2>
-      <p class="text-secondary/70 dark:text-white/70 max-w-2xl">
-        {t('projects.subtitle', lang)}
-      </p>
+    <div class="mb-12 text-center" data-aos="fade-up">
+      <h2 class="font-heading text-h2 text-secondary dark:text-white">{t('projects.title', lang)}</h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {projects.map((project, index) => (
-        <div
-          class="md:col-span-4 group bg-white dark:bg-neutral-dark border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+        <button
+          class="project-card group text-left bg-white dark:bg-neutral-dark border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
+          data-project-index={index}
           data-aos="fade-up"
           data-aos-delay={index * 100}
         >
-          <div class="relative overflow-hidden aspect-video">
-            <img
-              src={project.image}
-              alt={project.title}
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-            <div class="absolute top-4 left-4 flex flex-wrap gap-2">
-              {project.tags.map(tag => (
-                <span class="px-3 py-1 text-xs font-mono bg-white/90 dark:bg-neutral-dark/90 backdrop-blur-sm text-primary rounded-full">
-                  {tag}
-                </span>
-              ))}
-            </div>
+          <div
+            class="relative aspect-video overflow-hidden rounded-t-lg bg-secondary/5 dark:bg-white/5 thumb-pattern ring-1 ring-inset ring-gray-200 dark:ring-white/10"
+          >
+            {project.images.length > 0 ? (
+              <img
+                src={project.images[0]}
+                alt={project.title}
+                loading="lazy"
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            ) : (
+              <span class="absolute inset-0 flex items-center justify-center font-mono text-4xl text-primary/40">
+                {project.title.split(' ').map(w => w[0]).join('').slice(0, 3)}
+              </span>
+            )}
           </div>
 
-          <div class="p-6">
-            <h3 class="font-heading text-xl text-secondary dark:text-white mb-3 group-hover:text-primary transition-colors duration-300">
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="font-heading text-lg text-secondary dark:text-white mb-2 group-hover:text-primary transition-colors duration-300">
               {project.title}
             </h3>
-            <p class="text-secondary/70 dark:text-white/70 mb-6">
-              {project.shortDescription}
+            <p class="text-secondary/70 dark:text-white/70 text-sm leading-relaxed mb-4 line-clamp-2 flex-grow">
+              {project.cardDesc}
             </p>
-
-            <Button
-              text={t('projects.buttonText', lang)}
-              href={`/projects/${project.slug}`}
-              variant="outline"
-              size="sm"
-            />
+            <div class="flex flex-wrap gap-2 mb-5">
+              {project.stack.slice(0, 6).map(tech => (
+                <span class="px-2.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded-full">
+                  {tech}
+                </span>
+              ))}
+              {project.stack.length > 6 && (
+                <span class="px-2.5 py-0.5 text-xs font-mono text-secondary/50 dark:text-white/50">
+                  +{project.stack.length - 6}
+                </span>
+              )}
+            </div>
+            <span class="inline-flex items-center text-sm font-medium text-primary group-hover:gap-2 transition-all duration-300">
+              {t('projects.card.viewDetails', lang)}
+              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
           </div>
-        </div>
+        </button>
       ))}
     </div>
 
     <div class="mt-12 text-center" data-aos="fade-up">
-      <Button
-        text={t('projects.allProjectsButtonText', lang)}
-        href="/projects"
-        variant="primary"
-      />
+      <a
+        href={github_url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center rounded-lg font-semibold text-base py-3.5 px-7 bg-primary text-white hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
+      >
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        {t('projects.allProjectsButtonText', lang)}
+      </a>
     </div>
   </div>
 </section>
+
+<!-- Project Detail Modal -->
+<dialog
+  id="project-modal"
+  class="rounded-2xl p-0 bg-transparent backdrop:bg-black/60 backdrop:backdrop-blur-sm shadow-2xl
+         w-full max-w-full h-full max-h-full
+         sm:w-full sm:max-w-3xl sm:h-auto sm:max-h-[90vh] sm:mx-auto"
+  aria-label="Project details"
+>
+  <div class="flex flex-col h-full sm:h-auto sm:max-h-[90vh] bg-white dark:bg-neutral-900 sm:rounded-2xl overflow-hidden">
+    <div class="sticky top-0 z-10 flex justify-end p-3 sm:p-4">
+      <button
+        id="modal-close-btn"
+        class="w-9 h-9 flex items-center justify-center rounded-full bg-black/10 dark:bg-white/10 text-secondary dark:text-white/70 hover:bg-black/20 dark:hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
+        aria-label="Close dialog"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="overflow-y-auto flex-1 sm:-mt-14 px-0 sm:px-8 pb-8 project-modal-scroll">
+      <!-- Images carousel -->
+      <div id="modal-images" class="mb-6"></div>
+
+      <div class="px-6 sm:px-0">
+        <!-- Title -->
+        <h2 id="modal-title" class="font-heading text-2xl text-secondary dark:text-white mb-6"></h2>
+
+        <!-- Overview -->
+        <div class="mb-6">
+          <h3 class="font-mono text-xs uppercase tracking-[0.25em] text-secondary/50 dark:text-white/50 mb-3">
+            {t('projects.modal.overview', lang)}
+          </h3>
+          <p id="modal-overview" class="text-secondary/70 dark:text-white/70 leading-relaxed"></p>
+        </div>
+
+        <!-- Highlights -->
+        <div id="modal-highlights-wrap" class="mb-6">
+          <h3 class="font-mono text-xs uppercase tracking-[0.25em] text-secondary/50 dark:text-white/50 mb-3">
+            {t('projects.modal.highlights', lang)}
+          </h3>
+          <div id="modal-highlights" class="grid grid-cols-2 gap-3"></div>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="mb-6">
+          <h3 class="font-mono text-xs uppercase tracking-[0.25em] text-secondary/50 dark:text-white/50 mb-3">
+            {t('projects.modal.stack', lang)}
+          </h3>
+          <div id="modal-stack" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <!-- Metrics -->
+        <div id="modal-metrics-wrap" class="mb-6">
+          <h3 class="font-mono text-xs uppercase tracking-[0.25em] text-secondary/50 dark:text-white/50 mb-3">
+            {t('projects.modal.metrics', lang)}
+          </h3>
+          <div id="modal-metrics" class="flex flex-col gap-2"></div>
+        </div>
+
+        <!-- Links -->
+        <div id="modal-links" class="flex flex-wrap gap-3 pt-2"></div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const PROJECTS = [
+    {
+      title: 'Hierarchical IRCoT RAG',
+      cardDesc: 'Hierarchical RAG chatbot proposing interleaved chain-of-thought reasoning for complex question answering on long documents.',
+      overview: 'RAG chatbot that optimizes hierarchical tree traversal using Interleaving Chain-of-Thought (IRCoT) reasoning. Built a hierarchical indexing pipeline with multilingual-e5 embeddings, UMAP dimensionality reduction, and BIC-optimized Gaussian Mixture Models for RAPTOR-style recursive tree construction. Implemented adaptive depth-control traversal with dual-threshold pruning to balance direct query similarity and reasoning-chain similarity. Deployed end-to-end via FastAPI with vLLM serving quantized Qwen2.5-7B-Instruct.',
+      highlights: [
+        { title: 'RAPTOR-Style Trees', desc: 'Hierarchical document indexing' },
+        { title: 'IRCoT Reasoning', desc: 'Interleaved chain-of-thought for complex queries' },
+        { title: 'Adaptive Traversal', desc: 'Dual-threshold pruning for retrieval precision' },
+        { title: 'Cross-Dataset Testing', desc: 'Validated on 4 benchmark datasets' },
+      ],
+      stack: ['Python', 'FastAPI', 'Qdrant', 'vLLM', 'Qwen2.5', 'multilingual-e5', 'UMAP', 'GMM'],
+      metrics: [
+        'Evaluated on 4 benchmark datasets: Qasper, NarrativeQA, TydiQA, QuALITY',
+        '+14% Token F1 & +11% ROUGE-L over baseline on NarrativeQA',
+        'Baseline runs 2-4x faster than the proposed method',
+        'Statistical validation with Wilcoxon & McNemar tests',
+      ],
+      links: { github: 'https://github.com/mkhafidm/Hierarchical-IRCoT-RAG', paper: '', demo: '' },
+      images: ['/projects/hirco-rag/cover.png', '/projects/hirco-rag/architecture.png', '/projects/hirco-rag/tree-construction.png', '/projects/hirco-rag/tree-traversal.png'],
+    },
+    {
+      title: 'RAG Query Router for Company Documents',
+      cardDesc: 'A RAG chatbot that routes user questions to the correct document source before retrieval, using a Random Forest classifier to reduce irrelevant retrieval and hallucination.',
+      overview: 'RAG chatbot that routes user questions to the correct document source before retrieval, instead of searching indiscriminately across all documents. Trained a Random Forest classifier on Indo-BERT sentence embeddings to categorize incoming questions into company profile, company regulations, or organizational structure — with a confidence-threshold fallback to general LLM knowledge when the classifier is uncertain. Built custom preprocessing parsers for structured regulations, markdown profile docs, and tabular org data, storing embedded chunks in Qdrant with source-based payload filtering. Supports dual-provider generation (Groq Llama 3.3 70B and Google Gemini) with streaming responses, deployed via Flask with structured query logging for observability.',
+      highlights: [
+        { title: 'Smart Query Routing', desc: 'Random Forest classifier on Indo-BERT embeddings, cuts irrelevant retrieval and hallucination risk' },
+        { title: 'Confidence-Gated Fallback', desc: 'Routes uncertain queries to general LLM knowledge instead of forcing a bad retrieval' },
+        { title: 'Multi-Format Document Parsing', desc: 'Dedicated parsers normalize structured regulations, markdown profiles, and tabular org data into a unified chunk format' },
+      ],
+      stack: ['Python', 'Flask', 'Qdrant', 'Groq Llama 3.3', 'Google Gemini', 'Sentence-Transformers', 'Indo-BERT', 'Scikit-learn'],
+      metrics: [
+        '3-way document source classification (profile / regulations / org structure)',
+        'Confidence-threshold fallback to reduce hallucination on out-of-scope queries',
+      ],
+links: { github: 'https://github.com/mkhafidm/rag-query-router' },
+      images: ['/projects/rag-query-router/architecture.png', '/projects/rag-query-router/interface.png'],
+    },
+    {
+      title: 'Automated CV Screening System',
+      cardDesc: 'End-to-end automated resume screening system leveraging Groq LLM, hybrid PII masking, and multi-category weighted scoring.',
+      overview: 'Automated end-to-end CV screening system designed to eliminate manual bottlenecks, reduce human bias, and accelerate recruitment with transparent scoring. The pipeline parses high-resolution PDF resumes and job descriptions using the unstructured library, applies a hybrid PII masking layer (Regex + Indonesian NER) for data privacy, and extracts structured JSON profiles via Groq LLM. It features an advanced multi-category weighted scoring engine (Domain Content 40%, Software Match 25%, Experience Length 15%, Education Fit 15%, and Soft Skill Evidence 5%) utilizing semantic embedding similarity, rapidfuzz string matching, and overlap-aware date merging. Outputs structured auditing details per candidate alongside an aggregated ranking CSV.',
+      highlights: [
+        { title: 'Hybrid PII Masking', desc: 'Combines regex and Indonesian NER (cahya/bert-base-indonesian-NER) to strip sensitive personal data before LLM processing for zero-bias evaluation.' },
+        { title: 'LLM Structured Extraction', desc: 'Utilizes Groq with strict JSON schema to parse messy resume layouts into clean, standardized candidate profiles.' },
+        { title: 'Multi-Category Scoring Engine', desc: 'Implements 5 independent weighted scorers covering domain relevance, software/tool matching, relevant work experience years, educational strata weights, and soft skill evidence.' },
+        { title: 'Transparent & Auditable Output', desc: 'Generates per-candidate JSON detail logs and a sorted ranking.csv summary for complete explainability.' },
+      ],
+      stack: ['Python', 'Groq LLM', 'Unstructured', 'Sentence-Transformers', 'HuggingFace', 'Pandas', 'RapidFuzz', 'Microsoft Presidio'],
+      metrics: [
+        'Multi-category weighted scoring framework summing to 100% (Domain 40%, Software 25%, Experience 15%, Education 15%, Soft Skills 5%)',
+        'Cost-efficient processing at approximately $0.0005 – $0.0014 per CV (~$0.50 – $1.40 per 1,000 CVs)',
+        'Automated dual-format output generation ({CV_Name}_result.json and ranking.csv)',
+      ],
+      links: { github: 'https://github.com/mkhafidm/resume-screeening-automation.git' },
+images: ['/projects/cv-screening/architecture.png'],
+    },
+  ];
+
+  const LABELS = {
+    overview:   { en: 'Overview',     id: 'Gambaran Umum' },
+    highlights: { en: 'Key Features', id: 'Fitur Utama' },
+    stack:      { en: 'Tech Stack',   id: 'Tech Stack' },
+    metrics:    { en: 'Metrics',      id: 'Metrik' },
+    github:     { en: 'GitHub',       id: 'GitHub' },
+    demo:       { en: 'Live Demo',    id: 'Live Demo' },
+    paper:      { en: 'Read Paper',   id: 'Baca Paper' },
+  };
+
+  const lang = (document.documentElement.lang || 'en') as 'en' | 'id';
+
+  function L(key: keyof typeof LABELS): string {
+    return LABELS[key][lang] || LABELS[key].en;
+  }
+
+  const dialog = document.getElementById('project-modal') as HTMLDialogElement;
+  const closeBtn = document.getElementById('modal-close-btn')!;
+  let previousFocus: HTMLElement | null = null;
+
+  function populateDialog(projectIndex: number) {
+    const p = PROJECTS[projectIndex];
+    if (!p) return;
+
+    // Images (horizontal scroll carousel)
+    const imagesEl = document.getElementById('modal-images')!;
+    if (p.images.length > 0) {
+      const slides = p.images.map((src, i) =>
+        `<img src="${src}" alt="${p.title} screenshot ${i + 1}" class="snap-center shrink-0 w-full h-auto" />`
+      ).join('');
+
+      const slidesCount = p.images.length;
+
+      imagesEl.innerHTML = `
+        <div class="relative rounded-xl ring-1 ring-inset ring-gray-200 dark:ring-white/10 overflow-hidden">
+          <div data-carousel-track class="flex items-center overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar bg-secondary/5 dark:bg-white/5 thumb-pattern">
+            ${slides}
+          </div>
+          ${slidesCount > 1 ? `
+            <button type="button" data-carousel-prev aria-label="Previous image" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 z-10 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/60">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button type="button" data-carousel-next aria-label="Next image" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 z-10 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/60">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="absolute bottom-3 inset-x-0 flex justify-center gap-2 z-10">
+              ${p.images.map((_, i) =>
+                `<button type="button" data-carousel-dot="${i}" aria-label="Go to image ${i + 1}" class="w-2 h-2 rounded-full cursor-pointer transition-colors duration-200 ${i === 0 ? 'bg-white' : 'bg-white/40'}"></button>`
+              ).join('')}
+            </div>` : ''}
+        </div>`;
+
+      const track = imagesEl.querySelector<HTMLElement>('[data-carousel-track]')!;
+      const prevBtn = imagesEl.querySelector<HTMLElement>('[data-carousel-prev]');
+      const nextBtn = imagesEl.querySelector<HTMLElement>('[data-carousel-next]');
+
+      if (prevBtn && nextBtn) {
+        const dotEls = Array.from(imagesEl.querySelectorAll<HTMLElement>('[data-carousel-dot]'));
+
+        const updateState = () => {
+          const slideW = track.clientWidth;
+          if (slideW === 0) return;
+          const idx = Math.min(Math.round(track.scrollLeft / slideW), slidesCount - 1);
+          dotEls.forEach((d, i) => {
+            d.classList.toggle('bg-white', i === idx);
+            d.classList.toggle('bg-white/40', i !== idx);
+          });
+          prevBtn.classList.toggle('opacity-0', idx === 0);
+          prevBtn.classList.toggle('pointer-events-none', idx === 0);
+          nextBtn.classList.toggle('opacity-0', idx === slidesCount - 1);
+          nextBtn.classList.toggle('pointer-events-none', idx === slidesCount - 1);
+        };
+
+        prevBtn.addEventListener('click', () => {
+          track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+          track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+        });
+        dotEls.forEach((d, i) => {
+          d.addEventListener('click', () => {
+            track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+          });
+        });
+        track.addEventListener('scroll', updateState, { passive: true });
+        updateState();
+      }
+    } else {
+      imagesEl.innerHTML = `
+        <div class="aspect-video w-full flex items-center justify-center bg-secondary/5 dark:bg-white/5 thumb-pattern rounded-xl ring-1 ring-inset ring-gray-200 dark:ring-white/10">
+          <span class="font-mono text-5xl text-primary/40">${p.title.split(' ').map((w: string) => w[0]).join('').slice(0, 3)}</span>
+        </div>`;
+    }
+
+    document.getElementById('modal-title')!.textContent = p.title;
+    document.getElementById('modal-overview')!.textContent = p.overview;
+
+    const highlightsWrap = document.getElementById('modal-highlights-wrap')!;
+    const highlightsEl = document.getElementById('modal-highlights')!;
+    if (p.highlights.length > 0) {
+      highlightsWrap.style.display = '';
+      highlightsEl.innerHTML = p.highlights.map(h => `
+        <div class="bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-xl p-4">
+          <div class="font-medium text-sm text-secondary dark:text-white mb-1">${h.title}</div>
+          <div class="text-xs text-secondary/60 dark:text-white/60 leading-relaxed">${h.desc}</div>
+        </div>
+      `).join('');
+    } else {
+      highlightsWrap.style.display = 'none';
+    }
+
+    document.getElementById('modal-stack')!.innerHTML = p.stack.map(tech =>
+      `<span class="px-3 py-1 text-sm font-mono bg-primary/10 text-primary rounded-full">${tech}</span>`
+    ).join('');
+
+    const metricsWrap = document.getElementById('modal-metrics-wrap')!;
+    const metricsEl = document.getElementById('modal-metrics')!;
+    if (p.metrics.length > 0) {
+      metricsWrap.style.display = '';
+      metricsEl.innerHTML = `<ul class="space-y-2">
+        ${p.metrics.map(m =>
+          `<li class="flex items-start gap-2 text-sm text-secondary/70 dark:text-white/70">
+            <span class="mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full bg-primary"></span>
+            <span>${m}</span>
+          </li>`
+        ).join('')}
+      </ul>`;
+    } else {
+      metricsWrap.style.display = 'none';
+    }
+
+    const linksEl = document.getElementById('modal-links')!;
+    linksEl.innerHTML = '';
+    if (p.links.github) {
+      linksEl.innerHTML += `<a href="${p.links.github}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-200 dark:border-white/10 text-sm font-medium text-secondary dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        ${L('github')}
+      </a>`;
+    }
+    if (p.links.paper) {
+      linksEl.innerHTML += `<a href="${p.links.paper}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-200 dark:border-white/10 text-sm font-medium text-secondary dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        ${L('paper')}
+      </a>`;
+    }
+    if (p.links.demo) {
+      linksEl.innerHTML += `<a href="${p.links.demo}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 dark:focus:ring-offset-neutral-900">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        ${L('demo')}
+      </a>`;
+    }
+  }
+
+  function openModal(projectIndex: number) {
+    previousFocus = document.activeElement as HTMLElement;
+    document.body.style.overflow = 'hidden';
+    populateDialog(projectIndex);
+    dialog.showModal();
+  }
+
+  function closeModal() {
+    dialog.close();
+    document.body.style.overflow = '';
+    if (previousFocus) {
+      previousFocus.focus();
+      previousFocus = null;
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>('.project-card').forEach(card => {
+    card.addEventListener('click', () => {
+      openModal(parseInt(card.dataset.projectIndex || '0', 10));
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) closeModal();
+  });
+
+  dialog.addEventListener('cancel', (e) => {
+    e.preventDefault();
+    closeModal();
+  });
+</script>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .thumb-pattern {
+    background-image: radial-gradient(circle at 0.5px 0.5px, rgba(16, 32, 57, 0.12) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+  :root.dark .thumb-pattern {
+    background-image: radial-gradient(circle at 0.5px 0.5px, rgba(255, 255, 255, 0.12) 1px, transparent 0);
+  }
+
+  /* Hide native scrollbar on image carousel (navigated via arrows + swipe) */
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-modal-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+  }
+  .project-modal-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .project-modal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .project-modal-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+  }
+  .project-modal-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+  :root.dark .project-modal-scroll {
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  }
+  :root.dark .project-modal-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  :root.dark .project-modal-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  dialog[open] {
+    animation: modal-in 0.2s ease-out;
+  }
+  @keyframes modal-in {
+    from { opacity: 0; transform: scale(0.95) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+</style>

@@ -65,23 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Scroll-triggered animations for sections
 
-  // Timeline section animation
-  const timelineItems = document.querySelectorAll('#timeline .timeline-item');
-
-  if (timelineItems.length > 0) {
-    gsap.from(timelineItems, {
-      scrollTrigger: {
-        trigger: '#timeline',
-        start: 'top 70%',
-      },
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: 'power3.out'
-    });
-  }
-
   // Skills section animations - combines AOS for scroll and GSAP for hover effects
   const skillClusters = document.querySelectorAll('.skill-cluster');
 
